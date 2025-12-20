@@ -1,1 +1,1 @@
-"ProjectWorkspace" is a repository through which I showcase my project works.
+"ProjectWorkspace" is a repository on which I work on projects.
