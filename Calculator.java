@@ -1,6 +1,6 @@
 /*
 * Project: Calculator
-* Version: 1.0.1
+* Version: 1.0.2
 * Author: Mohammad Hasan
 */
 package calc;
@@ -39,7 +39,7 @@ public class Calculator extends JFrame implements ActionListener {
         super("Calculator");
         this.setLayout(null);
         this.setSize(420, 550);
-        font = new Font("Ink Free", Font.BOLD, 30);
+        font = new Font("Verdana", Font.BOLD, 30);
         textfield = new JTextField();
         numberButtons = new JButton[10];
         addButton = new JButton("+");
@@ -54,6 +54,10 @@ public class Calculator extends JFrame implements ActionListener {
         functionButtons = new JButton[9];
         middlePanel = new JPanel();
         bottomPanel = new JPanel();
+        num1 = 0.0;
+        num2 = 0.0;
+        result = 0.0;
+        operator = '0';
         JButton[] operatorButtons = {
             addButton, subButton, mulButton, divButton, decimalButton,
             equalButton, negativeButton, deleteButton, clearButton
@@ -66,6 +70,7 @@ public class Calculator extends JFrame implements ActionListener {
         }
         this.setComponents();
         this.addComponents();
+        this.setResizable(false);
         this.setDefaultCloseOperation(Calculator.EXIT_ON_CLOSE);
     }
 
