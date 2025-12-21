@@ -1,6 +1,6 @@
 /*
 * Project: Digital clock
-* Version: 1.0.1
+* Version: 1.0.2
 * Author: Mohammad Hasan
 */
 package clock;
@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class DigitalClock extends JFrame {
-    private Calendar calendar;
     private SimpleDateFormat timeFormat;
     private JLabel timeLabel;
     private String time;
