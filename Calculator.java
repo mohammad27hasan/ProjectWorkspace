@@ -1,3 +1,10 @@
+/*
+* Project: Calculator
+* Version: 1.0.1
+* Author: Mohammad Hasan
+*/
+package calc;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
@@ -7,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-class Calculator extends JFrame implements ActionListener {
+public class Calculator extends JFrame implements ActionListener {
     private Font font;
     private JTextField textfield;
     private JButton[] numberButtons;
@@ -23,13 +30,15 @@ class Calculator extends JFrame implements ActionListener {
     private JButton[] functionButtons;
     private JPanel middlePanel;
     private JPanel bottomPanel;
-    private int i;
     private double num1;
     private double num2;
     private double result;
     private char operator;
-    Calculator(String s) {
-        super(s);
+
+    public Calculator() {
+        super("Calculator");
+        this.setLayout(null);
+        this.setSize(420, 550);
         font = new Font("Ink Free", Font.BOLD, 30);
         textfield = new JTextField();
         numberButtons = new JButton[10];
@@ -46,19 +55,23 @@ class Calculator extends JFrame implements ActionListener {
         middlePanel = new JPanel();
         bottomPanel = new JPanel();
         JButton[] operatorButtons = {
-            addButton, subButton, mulButton, divButton, decimalButton, equalButton, negativeButton, deleteButton, clearButton
+            addButton, subButton, mulButton, divButton, decimalButton,
+            equalButton, negativeButton, deleteButton, clearButton
         };
-        for (i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             numberButtons[i] = new JButton(String.valueOf(i));
         }
-        for (i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             functionButtons[i] = operatorButtons[i];
         }
+        this.setComponents();
+        this.addComponents();
+        this.setDefaultCloseOperation(Calculator.EXIT_ON_CLOSE);
     }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        for (i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             if (source == numberButtons[i]) {
                 textfield.setText(textfield.getText().concat(String.valueOf(i)));
             }
@@ -104,7 +117,7 @@ class Calculator extends JFrame implements ActionListener {
             String text = textfield.getText();
             textfield.setText("");
             int len = text.length() - 1;
-            for (i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++) {
                 textfield.setText(textfield.getText() + text.charAt(i));
             }
         } else if (source == negativeButton) {
@@ -114,15 +127,15 @@ class Calculator extends JFrame implements ActionListener {
         }
     }
 
-    void setComponents() {
+    private void setComponents() {
         textfield.setBounds(50, 20, 300, 50);
         textfield.setFont(font);
         textfield.setEditable(false);
-        for (i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             numberButtons[i].setFont(font);
             numberButtons[i].setFocusable(false);
         }
-        for (i = 0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) {
             functionButtons[i].setFont(font);
             functionButtons[i].setFocusable(false);
         }
@@ -135,15 +148,15 @@ class Calculator extends JFrame implements ActionListener {
         bottomPanel.setLayout(new GridLayout(1, 3, 10, 10));
     }
 
-    void addComponents() {
+    private void addComponents() {
         add(textfield);
-        for (i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             numberButtons[i].addActionListener(this);
         }
-        for (i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             functionButtons[i].addActionListener(this);
         }
-        for (i = 1; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             middlePanel.add(numberButtons[i]);
             switch (i) {
             case 3:
@@ -166,14 +179,8 @@ class Calculator extends JFrame implements ActionListener {
         bottomPanel.add(clearButton);
         add(bottomPanel);
     }
-    
-    public static void main(String[] args) {
-        Calculator calc = new Calculator("Calculator");
-        calc.setLayout(null);
-        calc.setSize(420, 550);
-        calc.setVisible(true);
-        calc.setComponents();
-        calc.addComponents();
-        calc.setDefaultCloseOperation(Calculator.EXIT_ON_CLOSE);
+
+    public void calculate() {
+        this.setVisible(true);
     }
 }
