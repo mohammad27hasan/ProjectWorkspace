@@ -1,9 +1,8 @@
 /*
-* Project: Today
-* Version: 1.0
+* Project: DayAndDate
+* Version: 1.0.1
 * Author: Mohammad Hasan
 */
-package date;
 
 import javax.swing.JFrame;
 import java.awt.FlowLayout;
@@ -13,7 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Today extends JFrame {
+public class DayAndDate extends JFrame {
     private SimpleDateFormat dayFormat;
     private SimpleDateFormat dateFormat;
     private JLabel dayLabel;
@@ -21,9 +20,9 @@ public class Today extends JFrame {
     private String day;
     private String date;
 
-    public Today() {
+    public DayAndDate() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Today");
+        this.setTitle("DayAndDate");
         this.setLayout(new FlowLayout());
         this.setSize(450, 200);
         this.setResizable(false);
@@ -62,5 +61,9 @@ public class Today extends JFrame {
     public void status() {
         this.setVisible(true);
         runStatus();
+    }
+
+    public static void main(String[] args) {
+        new DayAndDate().status();
     }
 }
