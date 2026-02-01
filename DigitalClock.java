@@ -1,53 +1,42 @@
 /*
 * Project: Digital clock
-* Version: 1.0.2
+* Version: 1.0.3
 * Author: Mohammad Hasan
 */
-package clock;
 
-import javax.swing.JFrame;
-import java.awt.FlowLayout;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-
-public class DigitalClock extends JFrame {
-    private SimpleDateFormat timeFormat;
-    private JLabel timeLabel;
+public class DigitalClock extends javax.swing.JFrame {
+    private java.time.LocalTime localTime;
+    private java.time.format.DateTimeFormatter timeFormatter;
     private String time;
+    private javax.swing.JLabel timeLabel;
 
     public DigitalClock() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Clock");
-        this.setLayout(new FlowLayout());
-        this.setSize(350, 200);
-        this.setResizable(false);
-        timeFormat = new SimpleDateFormat("hh:mm:ss a");
-        timeLabel = new JLabel();
-        timeLabel.setFont(new Font("Verdana", Font.PLAIN, 50));
-        timeLabel.setForeground(new Color(0x00FF00));
-        timeLabel.setBackground(Color.BLACK);
-        timeLabel.setOpaque(true);
+        setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        setTitle("Digital Clock");
+        setLayout(new java.awt.FlowLayout());
+        setSize(350, 200);
+        setResizable(false);
+        localTime = null;
+        timeFormatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm:ss a");
         time = null;
-        this.add(timeLabel);
+        timeLabel = new javax.swing.JLabel();
+        timeLabel.setFont(new java.awt.Font("Verdana", java.awt.Font.PLAIN, 50));
+        timeLabel.setForeground(new java.awt.Color(0x00FF00));
+        timeLabel.setBackground(java.awt.Color.BLACK);
+        timeLabel.setOpaque(true);
+        add(timeLabel);
     }
 
-    private void runTime() {
+    public void startTime() {
+        setVisible(true);
         while (true) {
-            time = timeFormat.format(Calendar.getInstance().getTime());
+            localTime = java.time.LocalTime.now();
+            time = timeFormatter.format(localTime);
             timeLabel.setText(time);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
         }
     }
 
-    public void start() {
-        this.setVisible(true);
-        runTime();
+    public static void main(String[] args) {
+        new DigitalClock().startTime();
     }
 }
