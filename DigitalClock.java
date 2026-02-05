@@ -1,6 +1,6 @@
 /*
 * Project: Digital clock
-* Version: 1.0.3
+* Version: 1.0.4
 * Author: Mohammad Hasan
 */
 
@@ -27,7 +27,7 @@ public class DigitalClock extends javax.swing.JFrame {
         add(timeLabel);
     }
 
-    public void startTime() {
+    public void startClock() {
         setVisible(true);
         while (true) {
             localTime = java.time.LocalTime.now();
@@ -37,6 +37,6 @@ public class DigitalClock extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
-        new DigitalClock().startTime();
+        new DigitalClock().startClock();
     }
 }
